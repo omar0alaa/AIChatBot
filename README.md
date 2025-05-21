@@ -1,55 +1,132 @@
-# AI Chatbot with LM Studio Integration
+# AI Chatbot Widget with LM Studio Integration
 
-A web-based chatbot widget that connects to LM Studio's local AI models. This project provides a simple way to add an AI chat interface to any website while keeping your AI models running locally.
+A customizable chat widget for websites that allows visitors to interact with an AI assistant powered by LM Studio.
 
-## Project Structure
+## Features
 
-This repository consists of two main parts:
+- 💬 Floating chat button that expands into a chat window
+- 🤖 Integration with LM Studio API for real AI responses
+- 🖥️ Proxy server to bypass CORS issues
+- ⚙️ Configurable model parameters (temperature, max tokens, etc.)
+- 📝 Conversation history maintenance
+- 📱 Fully responsive design
+- 🎨 Material UI components for modern styling
 
-1. **Frontend Widget (`/ai-chatbot-widget`)**: A React application that provides the chat interface
-2. **Backend Proxy (`/server`)**: A Node.js Express server that handles communication with LM Studio
+## Architecture
 
-## Quick Start
+This project consists of two main components:
 
-1. **Prerequisites**:
-   - LM Studio installed and running with a model loaded
-   - Node.js and npm installed
+1. **React Frontend**: A chat widget built with React, TypeScript, and Material UI
+2. **Express Proxy Server**: A Node.js server that proxies requests to LM Studio API to avoid CORS issues
 
-2. **Start the proxy server**:
-   ```bash
-   cd server
-   npm install
-   node index.js
-   ```
+## Prerequisites
 
-3. **Start the frontend**:
-   ```bash
-   cd ai-chatbot-widget
-   npm install
-   npm start
-   ```
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [LM Studio](https://lmstudio.ai/) installed and running locally with a model loaded
+- Web browser (Chrome recommended)
+
+## Getting Started
+
+### Installation
+
+1. Clone this repository:
+```bash
+git clone https://github.com/yourusername/ai-chatbot-lm-studio.git
+cd ai-chatbot-lm-studio
+```
+
+2. Install frontend dependencies:
+```bash
+cd ai-chatbot-widget
+npm install
+```
+
+3. Install server dependencies:
+```bash
+cd ../server
+npm install
+```
+
+### Running the Application
+
+1. Start LM Studio and load a model (e.g., gemma-2-2b-it)
+
+2. Start the proxy server:
+```bash
+cd server
+node index.js
+```
+
+3. Start the React development server:
+```bash
+cd ai-chatbot-widget
+npm start
+```
 
 4. Open your browser to http://localhost:3000
 
-## Key Features
+## How to Use
 
-- Connect to any model available in LM Studio
-- Configure model parameters like temperature and token limit
-- Responsive design works on desktop and mobile
-- Proxy server eliminates CORS issues
-- Material UI components for a modern look and feel
+1. Click on the chat bubble icon in the bottom right corner to open the chat window
+2. Type your message and press Enter or click the Send button
+3. The message will be sent to LM Studio via the proxy server
+4. The AI's response will appear in the chat window
 
-## Screenshots
+## Configuration
 
-_[Screenshots will be added here]_
+You can configure the LM Studio settings by clicking the gear icon in the chat header:
 
-## Detailed Documentation
+- **Model Name**: The name of the model loaded in LM Studio
+- **Temperature**: Controls randomness (0.0 to 1.0)
+- **Max Tokens**: Maximum number of tokens in the response
+- **System Prompt**: Instructions for the AI assistant
 
-For more detailed information, see the README files in each subdirectory:
+## Integration Into Your Website
 
-- [Frontend Widget Documentation](./ai-chatbot-widget/README.md)
-- [Backend Proxy Documentation](./server/README.md)
+### Option 1: Using as a React Component
+
+1. Build the project:
+```bash
+cd ai-chatbot-widget
+npm run build
+```
+
+2. Copy the built files from the `build` directory to your project.
+
+3. Import the ChatWidget component:
+```jsx
+import ChatWidget from './path/to/components/ChatWidget';
+
+function YourApp() {
+  return (
+    <div>
+      {/* Your website content */}
+      <ChatWidget />
+    </div>
+  );
+}
+```
+
+### Option 2: Deploy as a Standalone Service
+
+1. Configure the proxy server for your production environment
+2. Build the React app
+3. Serve both the proxy server and the built React app from your server
+
+## Customization
+
+You can customize the widget by modifying:
+
+- `src/components/ChatWidget.css` for styling changes
+- `src/components/ChatWidget.tsx` for UI modifications
+- `src/services/chatService.ts` for API communication changes
+
+## Troubleshooting
+
+- **CORS Issues**: Make sure the proxy server is running
+- **Connection Errors**: Verify that LM Studio is running and has a model loaded
+- **Response Errors**: Check the console for detailed error messages
 
 ## License
 
-MIT 
+MIT
